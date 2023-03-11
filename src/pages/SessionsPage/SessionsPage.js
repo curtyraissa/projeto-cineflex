@@ -9,7 +9,9 @@ export default function SessionsPage() {
     <PageContainer>
       {selecione}
       <Session />
-      <Footer/>
+      <Footer>
+        <p>Tudo em todo lugar ao mesmo tempo</p>
+      </Footer>
     </PageContainer>
   )
 }

@@ -1,13 +1,13 @@
 import styled from "styled-components"
 
-export const Footer = () => {
+export const Footer = ({children}) => {
   return (
     <FooterContainer>
       <div>
         <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
       </div>
       <div>
-        <p>Tudo em todo lugar ao mesmo tempo</p>
+        {children}
       </div>
     </FooterContainer>
   )
