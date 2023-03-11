@@ -6,18 +6,18 @@ import SuccessPage from "./pages/SuccessPage/SuccessPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 export default function App() {
-    return (
-        <BrowserRouter>
-           <NavContainer>CINEFLEX</NavContainer>
+  return (
+    <BrowserRouter>
+      <NavContainer>CINEFLEX</NavContainer>
 
-            <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/assentos" element={<SeatsPage />} />
-            <Route path="/sessoes" element={<SessionsPage />} />
-            <Route path="/sucesso" element={<SuccessPage />} />
-            </Routes>
-        </BrowserRouter>
-    )
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/assentos" element={<SeatsPage />} />
+        <Route path="/sessoes" element={<SessionsPage />} />
+        <Route path="/sucesso" element={<SuccessPage />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 const NavContainer = styled.div`
