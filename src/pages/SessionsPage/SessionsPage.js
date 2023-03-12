@@ -1,4 +1,5 @@
 import axios from "axios"
+import { useParams, Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Footer } from "../../components/Footer"
@@ -6,10 +7,11 @@ import { Session } from "../../components/Session"
 
 export default function SessionsPage() {
   const [sessoes, setSessoes] = useState([])
+  const { idFilme } = useParams()
   const selecione = "Selecione o horário"
 
   useEffect(() => {
-    const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies/4/showtimes"
+    const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`
     const promise = axios.get(URL)
     promise.then((res) => {
       setSessoes(res.data.days)
@@ -26,10 +28,12 @@ export default function SessionsPage() {
       {selecione}
       <>
         {sessoes.map(s => (
-          <Session key={s.id} diaSemana={s.weekday} data={s.date}>
-            <button data-test="showtime">{s.showtimes[0].name}</button>
-            <button data-test="showtime">{s.showtimes[1].name}</button>
-          </Session>
+          <Link key={s.id} to={`/assentos/${s.id}`}>
+            <Session diaSemana={s.weekday} data={s.date}>
+              <button data-test="showtime">{s.showtimes[0].name}</button>
+              <button data-test="showtime">{s.showtimes[1].name}</button>
+            </Session>
+          </Link>
         ))}
       </>
 
@@ -51,6 +55,9 @@ const PageContainer = styled.div`
     padding-bottom: 120px;
     padding-top: 70px;
     div {
-        margin-top: 20px;
+      margin-top: 20px;
+    }
+    a {
+      text-decoration: none;
     }
 `
