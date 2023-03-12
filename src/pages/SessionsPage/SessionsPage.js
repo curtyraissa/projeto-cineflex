@@ -23,20 +23,21 @@ export default function SessionsPage() {
     })
   }, [])
 
+
   return (
     <PageContainer>
       {selecione}
       <>
         {sessoes.map(s => (
-          <Link key={s.id} to={`/assentos/${s.id}`}>
-            <Session diaSemana={s.weekday} data={s.date}>
-              <button data-test="showtime">{s.showtimes[0].name}</button>
-              <button data-test="showtime">{s.showtimes[1].name}</button>
-            </Session>
-          </Link>
+          <Session key={s.id} diaSemana={s.weekday} data={s.date}>
+            {s.showtimes.map(st =>
+              <Link to={`/assentos/${st.id}`} key={st.id}>
+                <button data-test="showtime">{st.name}</button>
+              </Link>
+            )}
+          </Session>
         ))}
       </>
-
       <Footer>
         <p>Tudo em todo lugar ao mesmo tempo</p>
       </Footer>
