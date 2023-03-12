@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Text = () => {
   return (
     <>
-      <TextContainer data-test="seats-info">
+      <TextContainer data-test="movie-info">
         <strong><p>Filme e sessão</p></strong>
         <p>Tudo em todo lugar ao mesmo tempo</p>
         <p>03/03/2023 - 14:00</p>
