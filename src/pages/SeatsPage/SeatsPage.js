@@ -13,6 +13,7 @@ export default function SeatsPage() {
   const [dia, setDia] = useState({})
   const [hora, setHora] = useState({})
   const { idSessao } = useParams()
+  const [seat, setSeats] = useState([])
   const selecione = "Selecione o(s) assento(s)"
 
   useEffect(() => {
@@ -20,6 +21,7 @@ export default function SeatsPage() {
     const promise = axios.get(URL)
     promise.then((res) => {
       setAssento(res.data.seats)
+      console.log(res.data.seats)
       setFilme(res.data.movie)
       setDia(res.data.day)
       setHora(res.data)
@@ -32,9 +34,10 @@ export default function SeatsPage() {
     })
   }, [])
 
-  // function escolherAssento(id, sentar){
-  //   setAssento([...assento, id])
-  // }
+  function escolherAssento(id){
+    setSeats([...assento, id])
+  }
+  console.log(`page seats ${seat}`)
 
   return (
     <PageContainer>
@@ -42,7 +45,7 @@ export default function SeatsPage() {
 
       <SeatsContainer>
         {assento.map(a =>
-          <Seats key={a.id} numAssento={a.id} />
+          <Seats key={a.id} numAssento={a.name} onClick={() => escolherAssento(a.id)} selected={seat}/>
         )}
       </SeatsContainer>
 

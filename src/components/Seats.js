@@ -1,16 +1,22 @@
 import styled from "styled-components"
+import {
+  BORDASELECIONADO, BGCORSELECIONADO,
+  BORDADISPONIVEL, BGCORDISPONIVEL,
+  BORDAINDISPONIVEL, BGCORINDISPONIVEL
+} from "../style/cores"
 
-export const Seats = ({numAssento}) => {
+export const Seats = ({numAssento, onClick, selected}) => {
+  console.log(`componente ${selected}`)
   return (
     <>
-      <SeatItem data-test="seat">{numAssento}</SeatItem>
+      <SeatItem borda={selected} bgcor={selected} data-test="seat" onClick={onClick}>{numAssento}</SeatItem>
     </>
   )
 }
 
 const SeatItem = styled.div`
-    border: 1px solid blue;         // Essa cor deve mudar
-    background-color: lightblue;    // Essa cor deve mudar
+    border: 1px solid ${props => props.border ? BORDASELECIONADO : BORDADISPONIVEL};
+    background-color: ${props => props.bgcor ? BGCORSELECIONADO : BGCORDISPONIVEL};
     height: 25px;
     width: 25px;
     border-radius: 25px;
