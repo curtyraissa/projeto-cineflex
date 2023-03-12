@@ -9,7 +9,7 @@ export default function SuccessPage() {
       <h1>Pedido feito <br /> com sucesso!</h1>
       <Text />
       <Link to="/">
-        <button>Voltar para Home</button>
+        <button data-test="go-home-btn">Voltar para Home</button>
       </Link>
     </PageContainer>
   )

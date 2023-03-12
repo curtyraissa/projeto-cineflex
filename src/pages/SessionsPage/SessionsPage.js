@@ -27,8 +27,8 @@ export default function SessionsPage() {
       <>
         {sessoes.map(s => (
           <Session key={s.id} diaSemana={s.weekday} data={s.date}>
-            <button>{s.showtimes[0].name}</button>
-            <button>{s.showtimes[1].name}</button>
+            <button data-test="showtime">{s.showtimes[0].name}</button>
+            <button data-test="showtime">{s.showtimes[1].name}</button>
           </Session>
         ))}
       </>

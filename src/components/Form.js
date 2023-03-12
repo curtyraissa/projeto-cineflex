@@ -4,10 +4,10 @@ export const Form = () => {
   return (
     <FormContainer>
       Nome do Comprador:
-      <input placeholder="Digite seu nome..." />
+      <input data-test="client-name" placeholder="Digite seu nome..." />
       CPF do Comprador:
-      <input placeholder="Digite seu CPF..." />
-      <button>Reservar Assento(s)</button>
+      <input data-test="client-cpf" placeholder="Digite seu CPF..." />
+      <button data-test="book-seat-btn" >Reservar Assento(s)</button>
     </FormContainer>
   )
 }

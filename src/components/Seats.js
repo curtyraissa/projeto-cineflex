@@ -3,11 +3,11 @@ import styled from "styled-components"
 export const Seats = () => {
   return (
     <SeatsContainer>
-      <SeatItem>01</SeatItem>
-      <SeatItem>02</SeatItem>
-      <SeatItem>03</SeatItem>
-      <SeatItem>04</SeatItem>
-      <SeatItem>05</SeatItem>
+      <SeatItem data-test="seat">01</SeatItem>
+      <SeatItem data-test="seat">02</SeatItem>
+      <SeatItem data-test="seat">03</SeatItem>
+      <SeatItem data-test="seat">04</SeatItem>
+      <SeatItem data-test="seat">05</SeatItem>
     </SeatsContainer>
   )
 }

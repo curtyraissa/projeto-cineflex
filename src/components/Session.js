@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Session = ({diaSemana, data, children}) => {
   return (
-    <div>
+    <div data-test="movie-day">
       <SessionContainer>
         {diaSemana} - {data}
         <ButtonsContainer>

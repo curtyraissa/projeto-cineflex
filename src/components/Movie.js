@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Movie = ({ src, alt }) => {
   return (
     <MovieContainer>
-      <img
+      <img data-test="movie"
         src={src}
         alt={alt} />
     </MovieContainer>
