@@ -11,6 +11,7 @@ export default function SeatsPage() {
   const [assento, setAssento] = useState([])
   const [filme, setFilme] = useState({})
   const [dia, setDia] = useState({})
+  const [hora, setHora] = useState({})
   const { idSessao } = useParams()
   const selecione = "Selecione o(s) assento(s)"
 
@@ -21,11 +22,13 @@ export default function SeatsPage() {
       setAssento(res.data.seats)
       setFilme(res.data.movie)
       setDia(res.data.day)
+      setHora(res.data)
     })
     promise.catch((err) => {
       setAssento(err.response.data.seats)
       setFilme(err.response.data.movie)
       setDia(err.response.data.day)
+      setHora(err.response.data)
     })
   }, [])
 
@@ -49,7 +52,7 @@ export default function SeatsPage() {
 
       <Footer src={filme.posterURL} alt={filme.title}>
         <p>{filme.title}</p>
-        <p>{dia.weekday} - {dia.date}</p>
+        <p>{dia.weekday} - {hora.name}</p>
       </Footer>
     </PageContainer>
   )
