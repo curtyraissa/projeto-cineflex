@@ -7,6 +7,7 @@ import { Session } from "../../components/Session"
 
 export default function SessionsPage() {
   const [sessoes, setSessoes] = useState([])
+  const [filme, setFilme] = useState({})
   const { idFilme } = useParams()
   const selecione = "Selecione o horário"
 
@@ -15,14 +16,13 @@ export default function SessionsPage() {
     const promise = axios.get(URL)
     promise.then((res) => {
       setSessoes(res.data.days)
-      console.log(res.data.days)
+      setFilme(res.data)
     })
     promise.catch((err) => {
       setSessoes(err.response.data.days)
-      console.log(err.response.data.days)
+      setFilme(err.response.data)
     })
   }, [])
-
 
   return (
     <PageContainer>
@@ -38,8 +38,8 @@ export default function SessionsPage() {
           </Session>
         ))}
       </>
-      <Footer>
-        <p>Tudo em todo lugar ao mesmo tempo</p>
+      <Footer key={filme.title} src={filme.posterURL} nome={filme.title}>
+        <p>{filme.title}</p>
       </Footer>
     </PageContainer>
   )
