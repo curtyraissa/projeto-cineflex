@@ -6,14 +6,16 @@ import SuccessPage from "./pages/SuccessPage/SuccessPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 export default function App() {
+  const nomeSite = "CINEFLEX"
+  
   return (
     <BrowserRouter>
-      <NavContainer>CINEFLEX</NavContainer>
+      <NavContainer>{nomeSite}</NavContainer>
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/assentos/:idSessao" element={<SeatsPage />} />
         <Route path="/sessoes/:idFilme" element={<SessionsPage />} />
+        <Route path="/assentos/:idSessao" element={<SeatsPage />} />
         <Route path="/sucesso" element={<SuccessPage />} />
       </Routes>
     </BrowserRouter>

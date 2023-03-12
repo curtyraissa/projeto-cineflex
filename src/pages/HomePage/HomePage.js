@@ -2,13 +2,14 @@ import { useState, useEffect } from "react"
 import styled from "styled-components"
 import axios from "axios"
 import { Movie } from "../../components/Movie"
+import { Link, useParams } from "react-router-dom"
 
 export default function HomePage() {
   const [filmes, setFilmes] = useState([])
   const selecione = "Selecione o filme"
 
   useEffect(() => {
-    const URL = "https://mock-api.driven.com.br/api/v8/cineflex/movies"
+    const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/`
     const promise = axios.get(URL)
     promise.then((res) => {
       setFilmes(res.data)
@@ -25,7 +26,9 @@ export default function HomePage() {
       {selecione}
       <ListContainer>
         {filmes.map(f =>
-          <Movie key={f.id} src={f.posterURL} alt={f.title} />
+          <Link to={`/sessoes/${f.id}`} key={f.id}>
+            <Movie src={f.posterURL} alt={f.title} />
+          </Link>
         )}
       </ListContainer>
     </PageContainer>
