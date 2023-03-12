@@ -9,6 +9,9 @@ import { Seats } from "../../components/Seats"
 
 export default function SeatsPage() {
   const [assento, setAssento] = useState([])
+  const [filme, setFilme] = useState({})
+  const [dia, setDia] = useState({})
+  const [hora, setHora] = useState({})
   const { idSessao } = useParams()
   const selecione = "Selecione o(s) assento(s)"
 
@@ -17,11 +20,15 @@ export default function SeatsPage() {
     const promise = axios.get(URL)
     promise.then((res) => {
       setAssento(res.data.seats)
-      console.log(res.data.seats)
+      setFilme(res.data.movie)
+      setDia(res.data.day)
+      setHora(res.data)
     })
     promise.catch((err) => {
       setAssento(err.response.data.seats)
-      console.log(err.response.data.seats)
+      setFilme(err.response.data.movie)
+      setDia(err.response.data.day)
+      setHora(err.response.data)
     })
   }, [])
 
@@ -37,9 +44,9 @@ export default function SeatsPage() {
 
       <Caption />
       <Form />
-      <Footer>
-        <p>Tudo em todo lugar ao mesmo tempo</p>
-        <p>Sexta - 14h00</p>
+      <Footer src={filme.posterURL} alt={filme.title}>
+        <p>{filme.title}</p>
+        <p>{dia.weekday} - {hora.name}</p>
       </Footer>
     </PageContainer>
   )
