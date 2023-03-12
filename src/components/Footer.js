@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export const Footer = ({children}) => {
+export const Footer = ({src, nome, children}) => {
   return (
     <FooterContainer data-test="footer">
       <div>
-        <img src={"https://br.web.img2.acsta.net/pictures/22/05/16/17/59/5165498.jpg"} alt="poster" />
+        <img src={src} alt={nome} />
       </div>
       <div>
         {children}
