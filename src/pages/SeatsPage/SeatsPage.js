@@ -11,7 +11,6 @@ export default function SeatsPage() {
   const [assento, setAssento] = useState([])
   const [filme, setFilme] = useState({})
   const [dia, setDia] = useState({})
-  const [hora, setHora] = useState({})
   const { idSessao } = useParams()
   const selecione = "Selecione o(s) assento(s)"
 
@@ -22,13 +21,11 @@ export default function SeatsPage() {
       setAssento(res.data.seats)
       setFilme(res.data.movie)
       setDia(res.data.day)
-      setHora(res.data)
     })
     promise.catch((err) => {
       setAssento(err.response.data.seats)
       setFilme(err.response.data.movie)
       setDia(err.response.data.day)
-      setHora(err.response.data)
     })
   }, [])
 
@@ -39,14 +36,29 @@ export default function SeatsPage() {
       <SeatsContainer>
         {assento.map(a =>
           <Seats key={a.id} numAssento={a.id} />
-         )}
+        )}
       </SeatsContainer>
 
-      <Caption />
+      <CaptionContainer>
+        <CaptionItem>
+          <CaptionCircle green />
+          Selecionado
+        </CaptionItem>
+        <CaptionItem>
+          <CaptionCircle />
+          Disponível
+        </CaptionItem>
+        <CaptionItem>
+          <CaptionCircle yellow />
+          Indisponível
+        </CaptionItem>
+      </CaptionContainer>
+
       <Form />
+      
       <Footer src={filme.posterURL} alt={filme.title}>
         <p>{filme.title}</p>
-        <p>{dia.weekday} - {hora.name}</p>
+        <p>{dia.weekday} - {dia.date}</p>
       </Footer>
     </PageContainer>
   )
@@ -64,7 +76,6 @@ const PageContainer = styled.div`
     padding-bottom: 120px;
     padding-top: 70px;
 `
-
 const SeatsContainer = styled.div`
     width: 330px;
     display: flex;
@@ -73,4 +84,28 @@ const SeatsContainer = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+`
+const CaptionContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    justify-content: space-between;
+    margin: 20px;
+`
+const CaptionCircle = styled.div`
+    border: 1px solid blue;         // Essa cor deve mudar
+    background-color: lightblue;    // Essa cor deve mudar
+    height: 25px;
+    width: 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px 3px;
+`
+const CaptionItem = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
 `
