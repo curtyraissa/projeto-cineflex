@@ -1,20 +1,21 @@
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import styled from "styled-components"
 import { Text } from "../../components/Text"
-
+ 
 export default function SuccessPage() {
-
+  const { state } = useLocation();
+ 
   return (
     <PageContainer>
       <h1>Pedido feito <br /> com sucesso!</h1>
-      <Text />
+      <Text state={state} />
       <Link to="/">
         <button data-test="go-home-btn">Voltar para Home</button>
       </Link>
     </PageContainer>
   )
 }
-
+ 
 const PageContainer = styled.div`
     display: flex;
     flex-direction: column;

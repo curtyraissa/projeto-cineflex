@@ -3,18 +3,34 @@ import styled from "styled-components"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-export const Form = () => {
+export const Form = ({ selectedIds, filme }) => {
   const [name, setName] = useState("")
   const [cpf, setCpf] = useState("")
   const navigate = useNavigate()
 
   function comprar(e) {
     e.preventDefault()
-    const URLPOST = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
-    const body = { name, cpf }
-    const promise = axios.post(URLPOST, body)
-    promise.then((res) => navigate("/sucesso"))
-    promise.catch((err) => console.log(err.response.data.message))
+
+    if (selectedIds.length > 0) {
+      const URLPOST = "https://mock-api.driven.com.br/api/v8/cineflex/seats/book-many"
+      const body = { name, cpf, ids: selectedIds }
+      const state = {
+        comprador: {
+          name,
+          cpf,
+          ids: selectedIds,
+        },
+        filme
+      }
+      const promise = axios.post(URLPOST, body)
+      promise.then((res) => navigate('/sucesso', {
+        state,
+      }))
+      promise.catch((err) => console.log(err.response.data.message))
+      return;
+    }
+
+    return alert('selecione um assento para prosseguir')
   }
 
   return (
